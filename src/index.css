@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ivory: #f8f7f3;
+  --color-grey: #f1f1f1;
+  --color-sage: #557f65;
+  --color-forest: #365c45;
+  --color-softsage: #a8b9a8;
+  --color-champagne: #c4b58a;
+  --color-ink: #25242a;
+
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Cormorant", Georgia, serif;
+  --font-script: "Allura", "Snell Roundhand", "Apple Chancery", cursive;
+  --font-display: "Archivo", "Manrope", ui-sans-serif, sans-serif;
+
+  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+  ::selection {
+    background: rgb(168 185 168 / 0.45);
+    color: var(--color-forest);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-sage);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  /* Small uppercase label — full-strength colour so it stays crisp on ivory. */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-forest);
+  }
+  .heading {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.012em;
+    color: var(--color-forest);
+    font-size: clamp(2.25rem, 6.2vw, 4.4rem);
+    text-wrap: balance;
+  }
+  .body-copy {
+    font-family: var(--font-serif);
+    font-size: clamp(1.15rem, 1.6vw, 1.42rem);
+    line-height: 1.6;
+    color: var(--color-ink);
+  }
+  .name-face {
+    font-family: var(--font-display);
+    font-stretch: 122%;
+    font-weight: 250;
+    letter-spacing: -0.02em;
+    color: var(--color-sage);
+  }
+  .numeral {
+    font-family: var(--font-display);
+    font-stretch: 125%;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.8;
+  }
+
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0.85rem 1.6rem;
+    border-radius: 999px;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      transform 0.35s var(--ease-lux),
+      box-shadow 0.45s var(--ease-lux),
+      background-color 0.3s,
+      color 0.3s,
+      border-color 0.3s;
+  }
+  .btn:hover {
+    transform: scale(1.02);
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+  .btn-primary {
+    background: var(--color-forest);
+    color: var(--color-ivory);
+    box-shadow: 0 10px 30px -14px rgb(54 92 69 / 0.7);
+  }
+  .btn-primary:hover {
+    background: var(--color-sage);
+    /* stronger illumination around interactive buttons */
+    box-shadow:
+      0 0 0 6px rgb(168 185 168 / 0.22),
+      0 14px 44px -10px rgb(85 127 101 / 0.75),
+      0 0 60px -6px rgb(196 181 138 / 0.55);
+  }
+  .btn-ghost {
+    background: rgb(255 255 255 / 0.7);
+    color: var(--color-forest);
+    border: 1px solid rgb(85 127 101 / 0.45);
+  }
+  .btn-ghost:hover {
+    background: #fff;
+    border-color: var(--color-sage);
+    box-shadow:
+      0 0 0 6px rgb(168 185 168 / 0.18),
+      0 12px 40px -12px rgb(85 127 101 / 0.5),
+      0 0 50px -8px rgb(196 181 138 / 0.5);
+  }
+
+  .hairline {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgb(85 127 101 / 0.45), transparent);
+  }
+
+  /* Fine paper grain, drawn with inline SVG turbulence so no bitmap is needed. */
+  .paper {
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .52 0 0 0 0 .42 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .paper-shadow {
+    box-shadow:
+      0 1px 1px rgb(37 36 42 / 0.04),
+      0 12px 28px -14px rgb(54 92 69 / 0.22),
+      0 40px 80px -40px rgb(54 92 69 / 0.28);
+  }
+  .section-pad {
+    padding: clamp(5rem, 11vw, 9.5rem) clamp(1.25rem, 5vw, 4rem);
+  }
+  .wrap {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-1.6deg);
+  }
+  50% {
+    transform: rotate(1.8deg);
+  }
+}
+.sway {
+  animation: sway 9s ease-in-out infinite;
+  transform-origin: var(--sway-origin, 0% 100%);
+}
+
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(260%);
+  }
+}
+
+@keyframes sparkle-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -900px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .sway,
+  .sparkle-layer,
+  .scroll-cue-dot {
+    animation: none !important;
+  }
+}
